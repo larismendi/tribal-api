@@ -1,11 +1,10 @@
 <?php namespace App\Repositories;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\RepositoryInterface;
 
 class Repository implements RepositoryInterface
 {
-    // repository property on class instances
+    // Repository property on class instances
     protected $repository;
 
     // Constructor to bind repository to repo
@@ -17,6 +16,9 @@ class Repository implements RepositoryInterface
                 break;
             case 'tvmaze':
                 $repository = new TvmazeRepository();
+                break;
+            case 'crcind':
+                $repository = new CrcindRepository();
                 break;
         }
         $this->repository = $repository;
