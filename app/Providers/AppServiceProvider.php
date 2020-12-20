@@ -31,11 +31,11 @@ class AppServiceProvider extends ServiceProvider
             ])->original;
         });
 
-        Response::macro('error', function ($value) {
+        Response::macro('error', function ($value, $status = 400) {
             return Response::make([
                 'success' => false,
                 'errors' => $value['errors']
-            ]);
+            ], $status);
         });
     }
 }
