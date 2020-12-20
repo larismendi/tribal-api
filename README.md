@@ -6,57 +6,80 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+ 
+# Tribal-Api
 
-## About Laravel
+## Descripción
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Esta API centraliza otros servicios de búsqueda como Itunes, Tvmaze y Crcind por medio del endpoint http://localhost:8000/api/search recibiendo el parametro:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Nombre   | Valor                    |
+|----------|--------------------------|
+| provider | itunes, tvmaze o crcind  |
+| term     | string (solo para itunes)|
+| media    | string (solo para itunes)|
+| name     | string (solo para tvmaze)|
+| q        | string (solo para crcind)|
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalación
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Para la instalación se debe seguir los siguientes pasos:
 
-## Laravel Sponsors
+Primer paso: ir al espacio de trabajo local y ejecutar el siguiente comando.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+git clone https://github.com/larismendi/tribal-api.git
+```
 
-### Premium Partners
+Segundo paso: entrar en el directorio y correr el siguiente comando para instalar todas las librerias necesarias para Laravel.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+```
+composer install
+```
 
-## Contributing
+Tercer paso: Al finalizar el paso anterior, correr el siguiente comando para configurar las variables de entorno del proyecto.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+cp .env.example .env
+```
 
-## Code of Conduct
+Cuarto paso: Luego del paso anterior, por seguridad se debe generar el APP_KEY corriendo el siguiente comando.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+Quinto paso: Para levantar el servidor de Laravel en Local, por favor correr el siguiente comando.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+php artisan serve
+```
 
-## License
+Ya con estos pasos podemos ingresar al Api con la url=http://localhost:8000/api/search y los parametros solicitados por provider:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+http://localhost:8000/api/search?provider=itunes&term=jack&media=music
+```
+
+
+## Correr pruebas
+
+Para ejecutar las pruebas creadas para el proyecto, por favor correr el siguiente comando:
+
+```
+php artisan test
+```
+
+## Generar la documentación del Api
+
+Para generar la documentación en http://localhost:8000/api/documentation, por favor correr el siguiente comando:
+
+```
+php artisan l5-swagger:generate
+```
+
+## Autor
+
+* **Luis Arismendi** - *Trabajo inicial* - [larismendi](https://github.com/larismendi)
