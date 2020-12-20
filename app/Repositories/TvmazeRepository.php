@@ -12,9 +12,9 @@ class TvmazeRepository {
         $this->url = env('TVMAZE_URL');
     }
 
-    public function search($parameterkeyvalue = [])
+    public function search($param)
     {
-        $param = 'q=' . $parameterkeyvalue['q'];
+        $param = 'q=' . $param['q'];
         $response = Http::get($this->url . '/search/shows?' . $param);
         // regresa como matriz
         $results = json_decode($response, true);

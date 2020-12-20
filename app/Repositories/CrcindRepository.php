@@ -13,7 +13,7 @@ class CrcindRepository {
         $this->url = env('CRCIND_URL');
     }
 
-    public function search($params = [])
+    public function search($param)
     {
         $client = new SoapClient($this->url, [
             'trace' => 1,
@@ -21,7 +21,7 @@ class CrcindRepository {
         ]);
         $response = $client->__soapCall("GetByName", array(
             "GetByName" => array(
-                "name" => $params['name']
+                "name" => $param['q']
             )
         ));
         $listByName = simplexml_load_string($response->GetByNameResult->any)->ListByName;

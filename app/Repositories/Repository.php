@@ -10,7 +10,7 @@ class Repository implements RepositoryInterface
     // Constructor to bind repository to repo
     public function __construct($repo)
     {
-        switch ($repo['provider']) {
+        switch ($repo) {
             case 'itunes':
                 $repository = new ItunesRepository();
                 break;

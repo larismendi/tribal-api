@@ -12,10 +12,16 @@ class ItunesRepository {
         $this->url = env('ITUNES_URL');
     }
 
-    public function search($params = [])
+    /**
+     * Search function
+     *
+     * @param [type] $param
+     * @return void
+     */
+    public function search($param)
     {
-        $param = 'term=' . $params['term'];
-        $response = Http::get($this->url . '/search?' . $param);
+        $term = 'term=' . $param['q'];
+        $response = Http::get($this->url . '/search?' . $term);
         // regresa como matriz
         return response()->success(['result' => json_decode($response, true)]);
     }

@@ -24,10 +24,7 @@ class ApiRequest extends FormRequest
     public function rules()
     {
         return [
-            'provider' => 'required|in:itunes,tvmaze,crcind',
-            'term' => 'required_if:provider,itunes|string',
-            'q' => 'required_if:provider,tvmaze|string',
-            'name' => 'required_if:provider,crcind|nullable|string'
+            'q' => 'required|string'
         ];
     }
 }
