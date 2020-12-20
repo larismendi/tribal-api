@@ -12,43 +12,13 @@
     "paths": {
         "/api/search": {
             "get": {
-                "summary": "Mostrar posts",
+                "summary": "Mostrar contents",
                 "parameters": [
-                    {
-                        "name": "provider",
-                        "in": "query",
-                        "description": "Provider: el proveedor a consultar (podria ser itunes, tvmaze o crcind).",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "itunes"
-                    },
-                    {
-                        "name": "term",
-                        "in": "query",
-                        "description": "Term: valor a buscar (es requerido si provider es Itunes).",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "jack+johnson"
-                    },
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Name: valor a buscar (es requerido si provider es Tvmaze).",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "Adam"
-                    },
                     {
                         "name": "q",
                         "in": "query",
-                        "description": "Q: valor a buscar (es requerido si provider es Crcind).",
-                        "required": false,
+                        "description": "Q: valor a buscar.",
+                        "required": true,
                         "schema": {
                             "type": "string"
                         },
@@ -57,7 +27,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Mostrar todos los posts."
+                        "description": "Mostrar todos los contents."
                     },
                     "422": {
                         "description": "Ha ocurrido un error."

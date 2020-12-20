@@ -8,13 +8,23 @@ use SoapClient;
 class CrcindRepository {
     protected $url;
 
+    /**
+     * Construct function
+     */
     public function __construct()
     {
         $this->url = env('CRCIND_URL');
     }
 
+    /**
+     * Search function
+     *
+     * @param [type] $param
+     * @return void
+     */
     public function search($param)
     {
+        $items = [];
         $client = new SoapClient($this->url, [
             'trace' => 1,
             'exception' => 0
@@ -27,15 +37,19 @@ class CrcindRepository {
         $listByName = simplexml_load_string($response->GetByNameResult->any)->ListByName;
 
         // regresa como matriz
-        $arr = json_decode(json_encode((array) $this->xml2array($listByName)), true)['SQL'];
-        return response()->success(['result' => [
-            'resultCount' => count($arr),
-            'results' => $arr
-        ]]);
+        $arr = json_decode(json_encode((array) $this->xml2array($listByName)), true);
+        if (isset($arr['SQL'])) {
+            $items = $arr['SQL'];
+        }
+        return $items;
     }
 
     /**
-     * function to convert xml 2 array
+     * xml2array function
+     *
+     * @param [type] $xmlObject
+     * @param [type] $out
+     * @return void
      */
     private function xml2array($xmlObject, $out = array ()) {
         foreach ( (array) $xmlObject as $index => $node ) {

@@ -24,11 +24,11 @@ class SearchValidationTest extends TestCase
      *
      * @return void
      */
-    public function testGetProviderItunesWithoutTermParam()
+    public function testGetWithoutQParam()
     {
-        $response = $this->json('GET', '/api/search', ['provider' => 'itunes']);
+        $response = $this->json('GET', '/api/search');
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['term']);
+        $response->assertJsonValidationErrors(['q']);
     }
 
     /**
@@ -36,78 +36,10 @@ class SearchValidationTest extends TestCase
      *
      * @return void
      */
-    public function testGetProviderItunesWithErrorParam()
+    public function testGetSearch()
     {
         $response = $this->json('GET', '/api/search', [
-            'provider' => 'itunes',
-            'q' => 'girls'
-        ]);
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['term']);
-    }
-
-    /**
-     * A testGetProviderItunesWithTermAndMediaParams feature test
-     *
-     * @return void
-     */
-    public function testGetProviderItunesWithTermParam()
-    {
-        $response = $this->json('GET', '/api/search', [
-            'provider' => 'itunes',
-            'term' => 'jack+johnson'
-        ]);
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A testGetProviderTvmazeWithoutQParam feature test
-     *
-     * @return void
-     */
-    public function testGetProviderTvmazeWithoutQParam()
-    {
-        $response = $this->json('GET', '/api/search', ['provider' => 'tvmaze']);
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors('q');
-    }
-
-    /**
-     * A testGetProviderItunesWithQParam feature test
-     *
-     * @return void
-     */
-    public function testGetProviderTvmazeWithQParam()
-    {
-        $response = $this->json('GET', '/api/search', [
-            'provider' => 'tvmaze',
-            'q' => 'girls'
-        ]);
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A testGetProviderCrcindWithoutNameParam feature test
-     *
-     * @return void
-     */
-    public function testGetProviderCrcindWithoutNameParam()
-    {
-        $response = $this->json('GET', '/api/search', ['provider' => 'crcind']);
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors('name');
-    }
-
-    /**
-     * A testGetProviderCrcindWithNameParam feature test
-     *
-     * @return void
-     */
-    public function testGetProviderCrcindWithNameParam()
-    {
-        $response = $this->json('GET', '/api/search', [
-            'provider' => 'crcind',
-            'name' => 'Adam'
+            'q' => 'jack+johnson'
         ]);
         $response->assertStatus(200);
     }

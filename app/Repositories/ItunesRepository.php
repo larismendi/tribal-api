@@ -23,6 +23,6 @@ class ItunesRepository {
         $term = 'term=' . $param['q'];
         $response = Http::get($this->url . '/search?' . $term);
         // regresa como matriz
-        return response()->success(['result' => json_decode($response, true)]);
+        return json_decode($response, true);
     }
 }

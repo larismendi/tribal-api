@@ -7,7 +7,11 @@ class Repository implements RepositoryInterface
     // Repository property on class instances
     protected $repository;
 
-    // Constructor to bind repository to repo
+    /**
+     * Contruct function
+     *
+     * @param [type] $repo
+     */
     public function __construct($repo)
     {
         switch ($repo) {
@@ -24,7 +28,12 @@ class Repository implements RepositoryInterface
         $this->repository = $repository;
     }
 
-    // Get all instances of repository
+    /**
+     * GetPost function
+     *
+     * @param [type] $params
+     * @return void
+     */
     public function getPost($params)
     {
         return $this->repository->search($params);
