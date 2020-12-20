@@ -14,7 +14,7 @@ class ItunesRepository {
 
     public function search($params = [])
     {
-        $param = 'term=' . $params['term'] . '&media=' . $params['media'];
+        $param = 'term=' . $params['term'];
         $response = Http::get($this->url . '/search?' . $param);
         // regresa como matriz
         return response()->success(['result' => json_decode($response, true)]);

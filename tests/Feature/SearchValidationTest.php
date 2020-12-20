@@ -24,11 +24,11 @@ class SearchValidationTest extends TestCase
      *
      * @return void
      */
-    public function testGetProviderItunesWithoutTermAndMediaParams()
+    public function testGetProviderItunesWithoutTermParam()
     {
         $response = $this->json('GET', '/api/search', ['provider' => 'itunes']);
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['term', 'media']);
+        $response->assertJsonValidationErrors(['term']);
     }
 
     /**
@@ -43,7 +43,7 @@ class SearchValidationTest extends TestCase
             'q' => 'girls'
         ]);
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['term', 'media']);
+        $response->assertJsonValidationErrors(['term']);
     }
 
     /**
@@ -51,12 +51,11 @@ class SearchValidationTest extends TestCase
      *
      * @return void
      */
-    public function testGetProviderItunesWithTermAndMediaParams()
+    public function testGetProviderItunesWithTermParam()
     {
         $response = $this->json('GET', '/api/search', [
             'provider' => 'itunes',
-            'term' => 'jack+johnson',
-            'media' => 'music'
+            'term' => 'jack+johnson'
         ]);
         $response->assertStatus(200);
     }

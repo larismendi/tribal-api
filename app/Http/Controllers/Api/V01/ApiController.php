@@ -38,16 +38,6 @@ class ApiController extends Controller
     *         )
     *     ),
     *     @OA\Parameter(
-    *         description="Media: tipo de resultado (es requerido si provider es Itunes).",
-    *         in="query",
-    *         name="media",
-    *         required=false,
-    *         example="music",
-    *         @OA\Schema(
-    *             type="string"
-    *         )
-    *     ),
-    *     @OA\Parameter(
     *         description="Name: valor a buscar (es requerido si provider es Tvmaze).",
     *         in="query",
     *         name="name",

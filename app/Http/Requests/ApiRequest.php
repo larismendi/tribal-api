@@ -26,7 +26,6 @@ class ApiRequest extends FormRequest
         return [
             'provider' => 'required|in:itunes,tvmaze,crcind',
             'term' => 'required_if:provider,itunes|string',
-            'media' => 'required_if:provider,itunes|in:music,movie,ebook',
             'q' => 'required_if:provider,tvmaze|string',
             'name' => 'required_if:provider,crcind|nullable|string'
         ];

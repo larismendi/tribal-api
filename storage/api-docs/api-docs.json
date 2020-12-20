@@ -35,16 +35,6 @@
                         "example": "jack+johnson"
                     },
                     {
-                        "name": "media",
-                        "in": "query",
-                        "description": "Media: tipo de resultado (es requerido si provider es Itunes).",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "music"
-                    },
-                    {
                         "name": "name",
                         "in": "query",
                         "description": "Name: valor a buscar (es requerido si provider es Tvmaze).",
