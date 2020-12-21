@@ -18,19 +18,15 @@ class ItunesResource extends JsonResource
     {
         try {
             return [
-                'provider' => 'Itunes',
+                'provider' => 'itunes',
                 'id' => $this->resource['trackId'],
                 'name' => $this->resource['artistName'],
                 'trackName' => $this->resource['trackName'],
                 'link' => $this->resource['trackViewUrl'],
+                'image' => $this->resource['artworkUrl100'],
                 'date' => $this->resource['releaseDate'],
                 'country' => $this->resource['country'],
-                'genre' => $this->resource['primaryGenreName'],
-                'description' => $this->resource['shortDescription'] ?? null,
-                'price' => $this->resource['trackPrice'],
-                'rentalPrice' => $this->resource['trackRentalPrice'] ?? null,
-                'hdPrice' => $this->resource['trackHdPrice'] ?? null,
-                'hdRentalPrice' => $this->resource['trackHdRentalPrice'] ?? null,
+                'description' => $this->resource['shortDescription'],
             ];
         } catch (Exception $e) {
             Log::error($e->getMessage());

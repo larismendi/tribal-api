@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Log;
 
 class TvmazeResource extends JsonResource
 {
@@ -14,20 +16,20 @@ class TvmazeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'provider' => 'Tvmaze',
-            'id' => $this->resource['show']['id'],
-            'name' => $this->resource['show']['name'],
-            'trackName' => null,
-            'link' => $this->resource['show']['url'],
-            'date' => $this->resource['show']['premiered'],
-            'country' => $this->resource['show']['network']['country']['name'],
-            'genre' => $this->resource['show']['genres'],
-            'description' => $this->resource['show']['summary'] ?? null,
-            'price' => null,
-            'rentalPrice' => null,
-            'hdPrice' => null,
-            'hdRentalPrice' => null,
-        ];
+        try {
+            return [
+                'provider' => 'tvmaze',
+                'id' => $this->resource['show']['id'],
+                'name' => $this->resource['show']['name'],
+                'trackName' => null,
+                'link' => $this->resource['show']['url'],
+                'image' => $this->resource['show']['image']['medium'],
+                'date' => $this->resource['show']['premiered'],
+                'country' => $this->resource['show']['network']['country']['name'],
+                'description' => $this->resource['show']['summary'],
+            ];
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 }
